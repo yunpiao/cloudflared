@@ -1,4 +1,6 @@
-# Cloudflare Tunnel client
+# Cloudflare Tunnel client (SOCKS5 代理增强版)
+
+> **注意**: 这是 cloudflared 的一个增强版本，添加了 SOCKS5 代理支持功能。
 
 Contains the command-line client for Cloudflare Tunnel, a tunneling daemon that proxies traffic from the Cloudflare network to your origins.
 This daemon sits between Cloudflare network and your origin (e.g. a webserver). Cloudflare attracts client requests and sends them to you
@@ -12,6 +14,34 @@ Such usages are available under `cloudflared access help`.
 
 You can instead use [WARP client](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/private-networks)
 to access private origins behind Tunnels for Layer 4 traffic without requiring `cloudflared access` commands on the client side.
+
+## 🆕 增强功能: SOCKS5 代理支持
+
+此版本新增了 SOCKS5 代理支持,允许 cloudflared 通过 SOCKS5 代理连接到 Cloudflare 边缘节点。
+
+**主要特性:**
+- ✅ 支持标准 SOCKS5 协议 (RFC 1928)
+- ✅ 支持用户名/密码认证 (RFC 1929)
+- ✅ 智能降级: 代理失败时自动切换到直连
+- ✅ 完全向后兼容,不影响现有功能
+
+**快速开始:**
+
+```bash
+# 通过 SOCKS5 代理运行隧道
+cloudflared tunnel run --edge-proxy-url socks5://127.0.0.1:1080 mytunnel
+
+# 带认证的代理
+cloudflared tunnel run --edge-proxy-url socks5://user:pass@proxy:1080 mytunnel
+
+# 或在配置文件中设置
+# config.yml
+edge-proxy-url: socks5://127.0.0.1:1080
+```
+
+**详细文档:**
+- [SOCKS5 代理完整使用指南](SOCKS5_PROXY_GUIDE.md)
+- [功能测试报告](TEST_PROXY.md)
 
 
 ## Before you get started

@@ -681,6 +681,12 @@ func tunnelFlags(shouldHide bool) []cli.Flag {
 			Hidden:  false,
 		}),
 		altsrc.NewStringFlag(&cli.StringFlag{
+			Name:    cfdflags.EdgeProxyURL,
+			Usage:   "SOCKS5 proxy URL for connections to Cloudflare Edge. Format: socks5://[user:pass@]host:port. Falls back to direct connection if proxy fails.",
+			EnvVars: []string{"TUNNEL_EDGE_PROXY_URL"},
+			Hidden:  false,
+		}),
+		altsrc.NewStringFlag(&cli.StringFlag{
 			Name:    tlsconfig.CaCertFlag,
 			Usage:   "Certificate Authority authenticating connections with Cloudflare's edge network.",
 			EnvVars: []string{"TUNNEL_CACERT"},

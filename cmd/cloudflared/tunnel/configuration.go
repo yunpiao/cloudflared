@@ -248,6 +248,7 @@ func prepareTunnelConfig(
 		Region:          resolvedRegion,
 		EdgeIPVersion:   edgeIPVersion,
 		EdgeBindAddr:    edgeBindAddr,
+		EdgeProxyURL:    c.String(flags.EdgeProxyURL),
 		HAConnections:   c.Int(flags.HaConnections),
 		IsAutoupdated:   c.Bool(flags.IsAutoUpdated),
 		LBPool:          c.String(flags.LBPool),

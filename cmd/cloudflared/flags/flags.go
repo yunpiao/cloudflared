@@ -69,7 +69,10 @@ const (
 	// Protocol is the command line flag to set the protocol to use to connect to the Cloudflare Edge
 	Protocol = "protocol"
 
-	// PostQuantum is the command line flag to force the connection to Cloudflare Edge to use Post Quantum cryptography
+	// PostQuantum 是一个命令行标志，用于强制 Cloudflared 与 Cloudflare Edge 建立连接时启用后量子加密（Post Quantum cryptography）。
+	// 启用该选项后，隧道将仅使用已抗量子计算机破解的加密协议（目前主要支持 QUIC 协议），有助于增强安全性，防止未来的量子计算攻击。
+	// 一般只在对前沿加密有要求或合规需要时开启。开启后，部分协议（如 http2）将被禁用，仅允许 QUIC 通信。
+	// 英文原注释：PostQuantum is the command line flag to force the connection to Cloudflare Edge to use Post Quantum cryptography
 	PostQuantum = "post-quantum"
 
 	// Features is the command line flag to opt into various features that are still being developed or tested
@@ -80,6 +83,11 @@ const (
 
 	// EdgeBindAddress is the command line flag to bind to IP address for outgoing connections to Cloudflare Edge
 	EdgeBindAddress = "edge-bind-address"
+
+	// EdgeProxyURL 是命令行标志，用于设置连接到 Cloudflare Edge 时使用的 SOCKS5 代理
+	// 格式: socks5://[user:pass@]host:port
+	// 如果代理连接失败，会自动降级到直连方式
+	EdgeProxyURL = "edge-proxy-url"
 
 	// Force is the command line flag to specify if you wish to force an action
 	Force = "force"
